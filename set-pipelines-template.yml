@@ -6,7 +6,7 @@ resources:
   check_every: 1m
   source:
     uri: https://github.com/liwidev/concourse-test
-- name: team-a
+- name: group-a
   type: git
   icon: github
   check_every: 1m
@@ -18,15 +18,15 @@ jobs:
 - name: set-self
   public: true
   plan:
-  - get: team-a
+  - get: group-a
     trigger: true
   - set_pipeline: self
-    file: team-a/set-pipelines.yml
+    file: group-a/set-pipelines.yml
 
-- name: set-example-pipelines
+- name: set-group-a-pipelines
   public: true
   plan:
-  - get: team-a
+  - get: group-a
     trigger: true
     passed: [set-self]
   - get: concourse-gp
