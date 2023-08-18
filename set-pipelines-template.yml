@@ -11,7 +11,7 @@ resources:
   icon: github
   check_every: 1m
   source:
-    uri: https://github.com/liwidev/team-a
+    uri: https://github.com/Liwidev/concourse-group-a
 
 jobs:
 # update this pipeline before updating child pipelines
@@ -26,10 +26,11 @@ jobs:
 - name: set-example-pipelines
   public: true
   plan:
-  - get: concourse-gp
+  - get: team-a
     trigger: true
     passed: [set-self]
-  - set_pipeline: job
-    file: concourse-gp/pipelines/node.yml
-  - set_pipeline: java
-    file: concourse-gp/pipelines/java.yml
+  - get: concourse-gp
+  - set_pipeline: ms-1-node
+    file: concourse-gp/gp-pipelines/node.yml
+  - set_pipeline: ms-1-java
+    file: concourse-gp/gp-pipelines/java.yml
