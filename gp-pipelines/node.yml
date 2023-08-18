@@ -1,6 +1,6 @@
 ---
 jobs:
-- name: job
+- name: ((first))-job
   public: true
   plan:
   - task: simple-task
@@ -11,8 +11,8 @@ jobs:
         source: { repository: busybox }
       run:
         path: echo
-        args: ["Hello world!"]
-- name: job-2
+        args: ["Hello, ((hello))!"]
+- name: level-((number))-job
   public: true
   plan:
   - task: simple-task
@@ -23,4 +23,4 @@ jobs:
         source: { repository: busybox }
       run:
         path: echo
-        args: ["Hello world!"]
+        args: ["Hello, ((hello))!"]
