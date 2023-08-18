@@ -20,6 +20,8 @@ jobs:
   plan:
   - get: group-a
     trigger: true
+  - get: concourse-gp
+    trigger: true
   - set_pipeline: self
     file: group-a/set-pipelines.yml
 
@@ -30,7 +32,11 @@ jobs:
     trigger: true
     passed: [set-self]
   - get: concourse-gp
+    trigger: true
+    passed: [set-self]
   - set_pipeline: ms-1-node
     file: concourse-gp/gp-pipelines/node.yml
   - set_pipeline: ms-1-java
+    file: concourse-gp/gp-pipelines/java.yml
+  - set_pipeline: ms-2-java
     file: concourse-gp/gp-pipelines/java.yml
