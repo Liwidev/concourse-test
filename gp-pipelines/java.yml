@@ -24,3 +24,15 @@ jobs:
       run:
         path: echo
         args: ["Hello world!"]
+- name: job-3
+  public: true
+  plan:
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: echo
+        args: ["Hello world!"]
